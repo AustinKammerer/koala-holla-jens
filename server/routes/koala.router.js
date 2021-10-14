@@ -1,7 +1,6 @@
-const router = express.Router()
-const express = require('express');
-const koalaRouter = require('./routes/koala.router.js');
 
+const express = require('express');
+const router = express.Router();
 const pg = require(`pg`);
 
 const Pool = pg.Pool;
@@ -26,7 +25,7 @@ pool.on(`error`, (error) => {
 
 // GET
 
-koalaRouter.get(`/`, (req,res) => {
+router.get(`/`, (req,res) => {
     console.log('got to GET');
     let queryText =`
     SELECT * FROM "koalas" 
@@ -44,7 +43,7 @@ koalaRouter.get(`/`, (req,res) => {
 
 
 // POST
-koalaRouter.post('/', (req, res) => {
+router.post('/', (req, res) => {
     const newKoala = req.body;
     let queryText = `
     INSERT INTO "koalas" ("name", "gender", "age", "transfer_ready", "notes")
@@ -68,4 +67,4 @@ koalaRouter.post('/', (req, res) => {
 
 // DELETE
 
-module.exports = koalaRouter;
+module.exports = router;
