@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 console.log('js');
 
 $(document).ready(function () {
@@ -29,31 +27,34 @@ function setupClickListeners() {
   });
 }
 
-function renderKoalas() {
-  $.ajax({
-    method: 'GET',
-    url: '/koala'
-  }).then(function (response) {
-    for (let i = 0; i < response.length; i++) {
-      $("#viewKoalas").append(`
+function renderKoalas(response) {
+  $("#viewKoalas").empty();
+  for (let i = 0; i < response.length; i++) {
+    $("#viewKoalas").append(`
       <tr>  
-        <td>${response.name}</td>
-        <td>${response.age}</td>
-        <td>${response.gender}</td>
-        <td>${response.readyForTransfer}</td>
-        <td>${response.notes}</td>
+        <td>${response[i].name}</td>
+        <td>${response[i].age}</td>
+        <td>${response[i].gender}</td>
+        <td>${response[i].readyForTransfer}</td>
+        <td>${response[i].notes}</td>
       </tr>
       `)
-    }
-    console.log(response);
-  }).catch(function (error))
-      console.log(error)
-}
+  }
+};
 
 function getKoalas() {
   console.log('in getKoalas');
   // ajax call to server to get koalas
-} // end getKoalas
+  $.ajax({
+    method: 'GET',
+    url: '/koalas'
+  }).then(function(response){
+    console.log(response)
+    renderKoalas(response);
+  }).catch(function(error){
+    console.log(error)
+  })
+}; // end getKoalas
 
 function saveKoala(newKoala) {
   console.log('in saveKoala', newKoala);
