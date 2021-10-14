@@ -36,7 +36,7 @@ function renderKoalas(response) {
         <td>${response[i].name}</td>
         <td>${response[i].age}</td>
         <td>${response[i].gender}</td>
-        <td>${response[i].readyForTransfer}</td>
+        <td>${response[i].transfer_ready}</td>
         <td>${response[i].notes}</td>
       </tr>
       `)
