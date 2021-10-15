@@ -9,6 +9,7 @@ $(document).ready(function () {
 }); // end doc ready
 
 function setupClickListeners() {
+  $("#viewKoalas").on("click", ".readyBtn", updateTransferStatus);
   $("#addButton").on("click", function () {
     console.log("in addButton on click");
     // get user input and put in an object
@@ -31,12 +32,13 @@ function renderKoalas(response) {
   $("#viewKoalas").empty();
 
   for (let i = 0; i < response.length; i++) {
+    let id = response[i].id;
     let readyBtn = ``;
     if (!response[i].transfer_ready) {
-      readyBtn = "<button>Ready for Transfer</button>";
+      readyBtn = `<button class="readyBtn">Ready for Transfer</button>`;
     }
-    $("#viewKoalas").append(`
-      <tr>  
+    let entry = $(`
+      <tr data-id="${id}">  
         <td>${response[i].name}</td>
         <td>${response[i].age}</td>
         <td>${response[i].gender}</td>
@@ -44,9 +46,7 @@ function renderKoalas(response) {
         <td>${readyBtn}</td>
         <td id="notesTD">${response[i].notes}</td>
       </tr> `);
-    // if (!response[i].transfer_ready) {
-    //   $("#notesTD").before(readyBtn);
-    // }
+    $("#viewKoalas").append(entry);
   }
 }
 
@@ -71,6 +71,18 @@ function saveKoala(newKoala) {
   // ajax call to server to get koalas
 }
 
-// function updateTransferStatus(){
-//   let id = $(this).
-// }
+function updateTransferStatus() {
+  console.log("button clicked");
+  let id = $(this).closest("tr").data("id");
+  console.log(id);
+  $.ajax({
+    method: "PUT",
+    url: `koalas/${id}`,
+  })
+    .then(function (response) {
+      getKoalas();
+    })
+    .catch(function (error) {
+      console.log(err);
+    });
+}
