@@ -10,7 +10,7 @@ $(document).ready(function () {
 }); // end doc ready
 
 function setupClickListeners() {
-  $('#viewKoalas').on('click', '.deleteBtn', deleteKaola)
+  $('#viewKoalas').on('click', '.deleteBtn', deleteKoala)
   $("#addButton").on("click", function () {
     console.log("in addButton on click");
     // get user input and put in an object
@@ -29,7 +29,7 @@ function setupClickListeners() {
   });
 }
 
-function deleteKaola () {
+function deleteKoala () {
   console.log('inside deleteBtn');
   idToDelete = $(this).closest('tr').data('id');
   console.log(idToDelete);
