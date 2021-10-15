@@ -11,6 +11,12 @@ header {
 }
 
 .information {
+
     display: inline-block;
     margin-left: 25px;
+}
+
+.inputHead {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
