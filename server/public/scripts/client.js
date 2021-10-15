@@ -73,6 +73,8 @@ function saveKoala(newKoala) {
     $('#readyForTransferIn').val('');
     $('#notesIn').val('');
     getKoalas();
+  }).catch(function(err) {
+    console.log('Error', err);
   })
 
 }
