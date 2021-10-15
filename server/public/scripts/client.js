@@ -39,6 +39,13 @@ function saveKoala( newKoala ){
   $.ajax({
     method: 'POST',
     url: '/koalas',
-    data: 
+    data: newKoala
+  }).then (function (response) {
+    $('#nameIn').val('');
+    $('#ageIn').val('');
+    $('#genderIn').val('');
+    $('#readyForTransferIn').val('');
+    $('#notesIn').val('');
+    getKoalas();
   })
 }
