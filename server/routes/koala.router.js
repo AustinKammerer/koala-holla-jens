@@ -64,5 +64,29 @@ router.post('/', (req, res) => {
 
 
 // DELETE
+router.delete('/', (req, res) => {
+    let id = req.params.id;
+    console.log(id);
+
+    let queryText = `
+    DELETE FROM "koalas"
+    WHERE "id" = $1;
+    `;
+
+    let values = [id];
+
+    pool.query(queryText, values)
+    .then((result) => {
+        console.log('Result of delete', result);
+        res.sendStatus(201);
+    })
+    .catch ((err) => {
+        alert('Error trying to delete');
+        console.log('Error trying to delete', err);
+        res.sendStatus(501);
+    })
+})
+
+
 
 module.exports = router;
