@@ -29,16 +29,24 @@ function setupClickListeners() {
 
 function renderKoalas(response) {
   $("#viewKoalas").empty();
+
   for (let i = 0; i < response.length; i++) {
+    let readyBtn = ``;
+    if (!response[i].transfer_ready) {
+      readyBtn = "<button>Ready for Transfer</button>";
+    }
     $("#viewKoalas").append(`
       <tr>  
         <td>${response[i].name}</td>
         <td>${response[i].age}</td>
         <td>${response[i].gender}</td>
         <td>${response[i].transfer_ready}</td>
-        <td>${response[i].notes}</td>
-      </tr>
-      `);
+        <td>${readyBtn}</td>
+        <td id="notesTD">${response[i].notes}</td>
+      </tr> `);
+    // if (!response[i].transfer_ready) {
+    //   $("#notesTD").before(readyBtn);
+    // }
   }
 }
 
@@ -62,3 +70,7 @@ function saveKoala(newKoala) {
   console.log("in saveKoala", newKoala);
   // ajax call to server to get koalas
 }
+
+// function updateTransferStatus(){
+//   let id = $(this).
+// }
