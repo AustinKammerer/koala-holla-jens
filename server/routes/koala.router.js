@@ -63,6 +63,24 @@ router.post('/', (req, res) => {
 })
 
 // PUT
+router.put('/:id', (req, res)=>{
+    let id = req.params.id
+    let koalas = req.body.koalas
+    let queryText = (`
+    UPDATE "koalas"
+    
+    `)
+    console.log(id)
+    console.log(koalas)
+
+    let values = [id]
+    pool.query(queryText,values).then(result=>{
+        res.sendStatus(200)
+    }).catch(error=>{
+        console.log(error)
+        res.sendStatus(500)
+    })
+});
 
 
 // DELETE
