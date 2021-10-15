@@ -1,4 +1,22 @@
-body { 
-    background-color: aqua;
+header { 
+    background-color: cadetblue;
 
+}
+
+.icon {
+    margin: 15px;
+    height: 150px;
+    width: 150px;
+    display: inline;
+}
+
+.information {
+
+    display: inline-block;
+    margin-left: 25px;
+}
+
+.inputHead {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
