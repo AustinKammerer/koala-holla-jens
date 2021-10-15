@@ -83,6 +83,7 @@ router.delete('/', (req, res) => {
         res.sendStatus(201);
     })
     .catch ((err) => {
+        alert('Error trying to delete');
         console.log('Error trying to delete', err);
         res.sendStatus(501);
     })
