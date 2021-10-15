@@ -86,7 +86,7 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE
-router.delete("/", (req, res) => {
+router.delete("/:id", (req, res) => {
   let id = req.params.id;
   console.log(id);
 

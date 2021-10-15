@@ -4,11 +4,13 @@ $(document).ready(function () {
   console.log("JQ");
   // Establish Click Listeners
   setupClickListeners();
+ 
   // load existing koalas on page load
   getKoalas();
 }); // end doc ready
 
 function setupClickListeners() {
+  $('#viewKoalas').on('click', '.deleteBtn', deleteKoala)
   $("#viewKoalas").on("click", ".readyBtn", updateTransferStatus);
   $("#addButton").on("click", function () {
     console.log("in addButton on click");
@@ -35,6 +37,22 @@ function setupClickListeners() {
   });
 }
 
+function deleteKoala () {
+  console.log('inside deleteBtn');
+  let idToDelete = $(this).closest('tr').data('id');
+  console.log(idToDelete);
+
+  $.ajax({
+    method: 'DELETE',
+    url: `/koalas/${idToDelete}`
+  }).then(function (response) {
+    console.log(response);
+    getKoalas();
+  }).catch(function (error) {
+    alert('Error', error)
+  })
+} // end deleteKoala
+
 function renderKoalas(response) {
   $("#viewKoalas").empty();
 
@@ -50,9 +68,11 @@ function renderKoalas(response) {
         <td>${response[i].age}</td>
         <td>${response[i].gender}</td>
         <td>${response[i].transfer_ready}</td>
+        <td>${response[i].notes}</td>
         <td>${readyBtn}</td>
         <td id="notesTD">${response[i].notes}</td>
-      </tr> `);
+        <td><button class="deleteBtn">Delete</button</td>
+        </tr> `);
     $("#viewKoalas").append(entry);
   }
 }
