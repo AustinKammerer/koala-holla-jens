@@ -65,14 +65,12 @@ router.post('/', (req, res) => {
 // PUT
 router.put('/:id', (req, res)=>{
     let id = req.params.id
-    let koalas = req.body.koalas
     let queryText = (`
     UPDATE "koalas"
-    
+    SET "transfer_ready" = TRUE
+    WHERE "id" = $1
     `)
     console.log(id)
-    console.log(koalas)
-
     let values = [id]
     pool.query(queryText,values).then(result=>{
         res.sendStatus(200)
