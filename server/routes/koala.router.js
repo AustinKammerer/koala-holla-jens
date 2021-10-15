@@ -40,8 +40,6 @@ router.get(`/`, (req,res) => {
     });  
 });
 
-
-
 // POST
 router.post('/', (req, res) => {
     const newKoala = req.body;
@@ -52,7 +50,7 @@ router.post('/', (req, res) => {
 
     pool.query(queryText, [newKoala.name, newKoala.gender, newKoala.age, newKoala.transfer_ready, newKoala.notes])
     .then( (result) => {
-        console.log('result is', result);
+        
         res.sendStatus(201);
         
     }).catch( (err) => {
