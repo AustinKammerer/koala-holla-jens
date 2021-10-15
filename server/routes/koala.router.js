@@ -66,5 +66,10 @@ router.post('/', (req, res) => {
 
 
 // DELETE
+router.delete('/', (req, res) => {
+    
+})
+
+
 
 module.exports = router;
