@@ -39,7 +39,7 @@ function setupClickListeners() {
 
 function deleteKoala () {
   console.log('inside deleteBtn');
-  idToDelete = $(this).closest('tr').data('id');
+  let idToDelete = $(this).closest('tr').data('id');
   console.log(idToDelete);
 
   $.ajax({
@@ -69,9 +69,9 @@ function renderKoalas(response) {
         <td>${response[i].gender}</td>
         <td>${response[i].transfer_ready}</td>
         <td>${response[i].notes}</td>
-        <td><button class="deleteBtn">Delete</button</td>
         <td>${readyBtn}</td>
         <td id="notesTD">${response[i].notes}</td>
+        <td><button class="deleteBtn">Delete</button</td>
         </tr> `);
     $("#viewKoalas").append(entry);
   }
